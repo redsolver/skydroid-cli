@@ -15,7 +15,7 @@ Command-line tool for SkyDroid app distribution.
 3. Edit all values in `skydroid-app.yaml` to match your app
 4. Put your app's domain name in `skydroid-dev.yaml`
 
-### Publish your app
+## Publish your app
 
 Run `skydroid publish` and follow the instructions.
 
