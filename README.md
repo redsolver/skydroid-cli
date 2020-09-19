@@ -1,6 +1,7 @@
 # SkyDroid CLI
 
 Command-line tool for SkyDroid app distribution.
+[SkyDroid](https://skydroid.app) is a decentralized domain-based App Store for Android.
 
 ## Install
 
