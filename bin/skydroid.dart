@@ -11,7 +11,7 @@ import 'package:skydroid_cli/commands/init.dart';
 
 main(List<String> args) async {
   var runner = CommandRunner(
-      'skydroid',
+      'skydroid v0.1.1',
       '\n' +
           "Command-line tool for SkyDroid app distribution. (https://skydroid.dev)");
 
