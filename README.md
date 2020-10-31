@@ -5,8 +5,9 @@ Command-line tool for SkyDroid app distribution.
 
 ## Install
 
-1. Get the [Dart SDK](https://dart.dev/get-dart)
-2. Run `pub global activate skydroid_cli` in your terminal
+1. Download the binary for your operating system: https://github.com/redsolver/skydroid-cli/releases/
+2. Move it to a folder in your PATH
+3. Make it executable with `chmod +x`
 
 ## Initialize SkyDroid for your app
 
