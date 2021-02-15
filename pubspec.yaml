@@ -1,7 +1,7 @@
 name: skydroid_cli
 description: Command-line tool for SkyDroid app distribution.
 homepage: https://skydroid.dev
-version: 0.1.1+11
+version: 0.1.2+12
 
 environment:
   sdk: ">=2.8.1 <3.0.0"

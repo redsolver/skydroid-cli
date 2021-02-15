@@ -8,8 +8,6 @@ import 'package:io/ansi.dart';
 import 'package:yaml/yaml.dart';
 
 import 'package:path/path.dart';
-import 'package:async/async.dart';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class PublishCommand extends Command {
@@ -113,14 +111,33 @@ class PublishCommand extends Command {
       print('New version, updating app...');
       print('');
 
-      print('Uploading APK...');
+      if (data['uploadBuild'].containsKey('file')) {
+        print('Uploading APK...');
 
-      final String apkFilePath = data['uploadBuild']['file'];
+        final String apkFilePath = data['uploadBuild']['file'];
 
-      final apk = await uploadFile(skynetPortalUploadUrl, File(apkFilePath));
+        final apk = await uploadFile(skynetPortalUploadUrl, File(apkFilePath));
 
-      metadataFileContent = metadataFileContent.replaceFirst('\nbuilds:\n',
-          '\nbuilds:\n  - versionName: ${currentVersionName}\n    versionCode: ${currentVersionCode}\n    sha256: ${apk.sha256}\n    apkLink: sia://${apk.skylink}\n');
+        metadataFileContent = metadataFileContent.replaceFirst('\nbuilds:\n',
+            '\nbuilds:\n  - versionName: ${currentVersionName}\n    versionCode: ${currentVersionCode}\n    sha256: ${apk.sha256}\n    apkLink: sia://${apk.skylink}\n');
+      } else {
+        print('Uploading APKs...');
+
+        final buildABIs = StringBuffer();
+
+        for (final abi in data['uploadBuild']['abis'].keys) {
+          print('Uploading APK for ABI $abi...');
+          final String apkFilePath = data['uploadBuild']['abis'][abi];
+
+          final apk =
+              await uploadFile(skynetPortalUploadUrl, File(apkFilePath));
+
+          buildABIs.write(
+              '      $abi:\n        sha256: ${apk.sha256}\n        apkLink: sia://${apk.skylink}\n');
+        }
+        metadataFileContent = metadataFileContent.replaceFirst('\nbuilds:\n',
+            '\nbuilds:\n  - versionName: ${currentVersionName}\n    versionCode: ${currentVersionCode}\n    abis:\n$buildABIs');
+      }
 
       metadataFileContent = metadataFileContent.replaceFirst(
           RegExp(
