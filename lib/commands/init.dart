@@ -44,10 +44,13 @@ icon: # TODO The link to your app's icon (https:// or sia://)
 localized:
   en-US:
     description: |-
-      your
-      app
-      description
-    summary: A short summary of your app
+      Replace # TODO Add description
+      this text
+      with your
+      app description
+    summary: # TODO Add short summary of your app
+
+# !!! DO NO EDIT BELOW THIS LINE !!!
 
 builds:
 
@@ -74,8 +77,8 @@ skynetPortal: https://siasky.net
 
 checkVersion:
   file: ${isFlutterApp ? 'pubspec.yaml' : 'app/build.gradle'}
-  versionCode: ${isFlutterApp ? r"'version:\s.+\+(\d+)'" : "'versionCode.+(\\d+)\$'"}
-  versionName: ${isFlutterApp ? r"'version:\s(.+)\+'" : "'versionName.+\"(.+)\"\$'"}
+  versionCode: ${isFlutterApp ? r"'version:\s.+\+(\d+)'" : "'versionCode\\s+(\\d+)'"}
+  versionName: ${isFlutterApp ? r"'version:\s(.+)\+'" : "'versionName.+\"(.+)\"'"}
 
 uploadBuild:
   file: ${isFlutterApp ? 'build/app/outputs/flutter-apk/app-release.apk' : 'app/release/app-release.apk'}
@@ -100,7 +103,10 @@ updateMetadataFile:
       ..writeln(cyan.wrap(
           'Please check the skydroid-app.yaml and skydroid-dev.yaml files and change the values to suit your app.'))
       ..writeln()
-      ..write('Then you can publish your app by executing ')
-      ..writeln(magenta.wrap('`skydroid publish`'));
+      ..write('Then you can validate that the file is correct using ')
+      ..writeln(magenta.wrap('skydroid validate'))
+      ..writeln()
+      ..write('And finally you can publish your app by executing ')
+      ..writeln(magenta.wrap('skydroid publish'));
   }
 }
