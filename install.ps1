@@ -14,7 +14,7 @@ if ($args.Length -eq 1) {
 $BinDir = "$Home\AppData\local\skydroid"
 
 $CliExe = "$BinDir\skydroid.exe"
-$Target = 'windows'
+$Target = 'windows.exe'
 
 # GitHub requires TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12

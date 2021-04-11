@@ -5,7 +5,7 @@
 set -e
 
 if [ "$OS" = "Windows_NT" ]; then
-	target="windows"
+	target="windows.exe"
 else
 	case $(uname -sm) in
 	"Darwin x86_64") target="mac" ;;
